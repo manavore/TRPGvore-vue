@@ -37,9 +37,9 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ './views/Equipement.vue'),
     },
     {
-      path: '/attribut',
-      name: 'attribut',
-      component: () => import(/* webpackChunkName: "about" */ './views/Attribut.vue'),
+      path: '/general',
+      name: 'general',
+      component: () => import(/* webpackChunkName: "about" */ './views/General.vue'),
     },
   ],
 });

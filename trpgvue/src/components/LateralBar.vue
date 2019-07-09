@@ -1,16 +1,18 @@
 <template>
   <div class="Lateralbar">
-
+<el-container>
+  Manavore Tabletop RPG
+</el-container>
         <el-menu
         default-active="2"
         class="el-menu-vertical"
         @open="handleOpen"
         @close="handleClose">
 
-          <router-link to="/attribut">
+          <router-link to="/general">
             <el-menu-item index="1">
               <i class="el-icon-menu"></i>
-              <span>Attributs</span>
+              <span>General</span>
             </el-menu-item>
           </router-link>
 

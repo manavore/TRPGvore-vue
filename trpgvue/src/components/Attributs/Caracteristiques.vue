@@ -1,22 +1,22 @@
 <template>
-  <div class="dice">
-    <el-card class="box-card" shadow="hover">
+  <div class="caracteristiques">
+    <el-card
+      class="box-card"
+      shadow="hover"
+    >
       <div
         slot="header"
         class="clearfix"
       >
-        <span>Dé</span>
+        <span>Caractéristiques</span>
       </div>
-      <font-awesome-icon icon="dice-d20" size="6x" :style="{ color: 'purple' }"/>
-
-      todo lancer le dé, afficher le score, etc.
+     Force Endurance Habileté Agilité Instinct Intelligence Empathie Volonté
     </el-card>
   </div>
 </template>
 
 
 <style lang="scss" scoped>
-
 .text {
   font-size: 14px;
 }
@@ -26,12 +26,11 @@
 }
 
 .box-card {
-  min-width: 100px;
 }
 </style>
 
 <script>
 export default {
-  name: 'Dice',
+  name: 'Caracteristiques',
 };
 </script>
