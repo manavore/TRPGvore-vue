@@ -1,35 +1,33 @@
 <template>
   <div id="app">
-    <el-row>
-      <el-col :span="4">
-        <Lateralbar />
-      </el-col>
-      <el-col :span="20">
-        <router-view />
-      </el-col>
-    </el-row>
+
+<el-container>
+  <el-aside>
+    <Lateralbar />
+  </el-aside>
+  <el-container>
+    <el-header>En-tête à compléter</el-header>
+    <el-main><router-view /></el-main>
+  </el-container>
+</el-container>
 
   </div>
 </template>
 
 <style lang="scss">
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+.el-header, .el-footer {
+    background-color: #B3C0D1;
+    color: #333;
+    text-align: center;
+    line-height: 60px;
   }
-}
+
+    .el-aside {
+    background-color: #D3DCE6;
+    color: #333;
+    text-align: center;
+    line-height: 200px;
+  }
 </style>
 
 <script>

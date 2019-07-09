@@ -1,6 +1,6 @@
 <template>
-  <div class="comptence">
-histoire
+  <div class="competence">
+competence
   </div>
 </template>
 
@@ -8,7 +8,7 @@ histoire
 // @ is an alias to /src
 
 export default {
-  name: 'comptence',
+  name: 'competence',
   components: {
 
   },
