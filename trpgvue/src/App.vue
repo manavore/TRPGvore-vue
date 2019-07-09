@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <el-row>
+      <el-col :span="4">
+        <Lateralbar />
+      </el-col>
+      <el-col :span="20">
+        <router-view />
+      </el-col>
+    </el-row>
+
   </div>
 </template>
 
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -27,3 +31,15 @@
   }
 }
 </style>
+
+<script>
+// @ is an alias to /src
+import Lateralbar from '@/components/LateralBar.vue';
+
+export default {
+  name: 'App',
+  components: {
+    Lateralbar,
+  },
+};
+</script>
