@@ -7,6 +7,7 @@
         @reset="onReset"
         class="q-gutter-md"
       >
+      <h4>Connexion</h4>
         <q-input
           v-model="name"
           hint="Nom d'utilisateur"

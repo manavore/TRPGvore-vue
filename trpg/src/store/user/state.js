@@ -1,7 +1,7 @@
 export default {
-  token: '',
+  token: localStorage.getItem('user-token') || '',
   status: 'pending',
-  user: {
+  user: JSON.parse(localStorage.getItem('user-info')) || {
     _id: '',
     name: '',
   },
