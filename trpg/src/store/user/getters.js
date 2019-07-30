@@ -19,6 +19,11 @@ export function getUserName(state) {
   return state.user.name;
 }
 
+export function getCharactersNames(state) {
+  const c = state.user.characters;
+  return c.map(a => a.name);
+}
+
 export function getStatus(state) {
   return state.status;
 }

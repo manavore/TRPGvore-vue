@@ -1,7 +1,7 @@
 <template>
-  <div>
-    Connecté en tant que: {{ getUserName }}
-  </div>
+  <div class="q-mr-md" v-if="isAuthenticated">
+      Connecté en tant que: <b> {{ getUserName }} </b>
+    </div>
 </template>
 
 <script>
@@ -11,6 +11,7 @@ export default {
   computed: {
     ...mapGetters('user', [
       'getUserName',
+      'isAuthenticated',
     ]),
   },
 };

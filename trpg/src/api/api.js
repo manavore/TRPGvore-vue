@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const API_URL = 'http://127.0.0.1:3000';
 const AUTH_URL = `${API_URL}/auth/`;
+const USER_URL = `${API_URL}/api/users/`;
 const DICE_URL = `${API_URL}/api/dice/`;
 const CHARACTER_URL = `${API_URL}/api/characters/`;
 
@@ -21,6 +22,26 @@ export default class APIService {
       .then(res => res.data);
   }
 
+  // user
+
+  static async getUser(id, optionChara, optionDice) {
+    return axios.get(`${USER_URL}${id}`, {
+      params: {
+        withCharacters: optionChara,
+        withDice: optionDice,
+      },
+    })
+      .then(res => res.data.characters);
+  }
+
+  static async patchUser(id, charaid) {
+    return axios.patch(`${USER_URL}${id}`,
+      { characterid: charaid })
+      .then(res => res.data.characters);
+  }
+
+  // dice
+
   // Thoses functions have to be tested again
   static async getDice() {
     return axios.get(DICE_URL)
@@ -34,6 +55,8 @@ export default class APIService {
       .catch(err => console.log(err));
   }
 
+  // character
+
   static async getCharacter(id) {
     return axios.get(`${CHARACTER_URL}${id}`, {
       params: {
@@ -42,6 +65,13 @@ export default class APIService {
     })
       .then(res => res.data)
       .catch(err => console.log(err));
+  }
+
+  static async postCharacter(name) {
+    console.log(name);
+
+    return axios.post(`${CHARACTER_URL}`, { name })
+      .then(res => res.data.savedCharacter);
   }
 
   static async patchCharacter(id, chara) {

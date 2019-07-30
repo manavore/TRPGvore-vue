@@ -49,6 +49,10 @@ module.exports = function (ctx) {
         'QForm',
         'QInput',
         'QToggle',
+        'QCard',
+        'QCardSection',
+        'QCardActions',
+        'QSelect',
       ],
 
       directives: [
@@ -167,7 +171,7 @@ module.exports = function (ctx) {
         // https://www.electron.build/configuration/configuration
 
         // appId: 'trpgmanavore'
-      }
-    }
-  }
-}
+      },
+    },
+  };
+};

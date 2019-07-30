@@ -22,7 +22,7 @@
 
     <q-drawer
       v-model="drawer"
-      bordered
+
       content-class="bg-grey-2"
       :mini="miniState"
       @mouseover="miniState = false"

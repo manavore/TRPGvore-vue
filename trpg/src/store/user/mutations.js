@@ -6,7 +6,6 @@ export default {
     state.status = 'success';
     localStorage.setItem('user-token', token);
     localStorage.setItem('user-info', JSON.stringify(user));
-    console.log(user);
     state.token = token;
     state.user = user;
   },
@@ -14,5 +13,11 @@ export default {
     state.status = 'error';
     localStorage.removeItem('user-token');
     localStorage.removeItem('user-info');
+  },
+  ADD_CHARACTER: (state, { character }) => {
+    state.user.characters.push(character);
+  },
+  UPDATE_CHARACTERS: (state, { characters }) => {
+    state.user.characters = characters;
   },
 };
