@@ -6,11 +6,12 @@ module.exports = function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     boot: [
-      'axios'
+      'axios',
+      'navguard'
     ],
 
     css: [
-      'app.styl'
+      'app.styl',
     ],
 
     extras: [
@@ -44,7 +45,10 @@ module.exports = function (ctx) {
         'QList',
         'QItem',
         'QItemSection',
-        'QItemLabel'
+        'QItemLabel',
+        'QForm',
+        'QInput',
+        'QToggle',
       ],
 
       directives: [
@@ -53,7 +57,7 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Notify'
+        'Notify',
       ]
     },
 
@@ -73,10 +77,10 @@ module.exports = function (ctx) {
           loader: 'eslint-loader',
           exclude: /node_modules/,
           options: {
-            formatter: require('eslint').CLIEngine.getFormatter('stylish')
-          }
-        })
-      }
+            formatter: require('eslint').CLIEngine.getFormatter('stylish'),
+          },
+        });
+      },
     },
 
     devServer: {
