@@ -22,52 +22,80 @@
 
     <q-drawer
       v-model="drawer"
-
+      v-if="isAuthenticated"
       content-class="bg-grey-2"
       :mini="miniState"
       @mouseover="miniState = false"
       @mouseout="miniState = true"
     >
           <q-list padding class="menu-list">
-            <q-item clickable v-ripple>
+            <q-item
+              clickable v-ripple
+              :to="{ name: 'home' }"
+            >
               <q-item-section avatar>
-                <q-icon name="inbox" />
+                <q-icon name="fab fa-fort-awesome" />
               </q-item-section>
 
               <q-item-section>
-                Inbox
+                Mes personnages
               </q-item-section>
             </q-item>
 
-            <q-item active clickable v-ripple>
+            <q-separator />
+
+            <q-item
+              clickable v-ripple
+              :to="{ path: '/main' }"
+            >
               <q-item-section avatar>
-                <q-icon name="star" />
+                <q-icon name="fas fa-address-card" />
               </q-item-section>
 
               <q-item-section>
-                Star
+                Général
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple>
+            <q-item
+              clickable v-ripple
+              :to="{ path: '/inventory' }"
+            >
               <q-item-section avatar>
-                <q-icon name="send" />
+                <q-icon name="fas fa-briefcase" />
               </q-item-section>
 
               <q-item-section>
-                Send
+                Inventaire
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple>
+            <q-item
+              clickable v-ripple
+              :to="{ path: '/skill' }"
+            >
               <q-item-section avatar>
-                <q-icon name="drafts" />
+                <q-icon name="fas fa-book-dead" />
               </q-item-section>
 
               <q-item-section>
-                Drafts
+                Compétences
               </q-item-section>
             </q-item>
+
+            <q-item
+              clickable v-ripple
+              :to="{ path: '/story' }"
+            >
+              <q-item-section avatar>
+                <q-icon name="fas fa-scroll" />
+              </q-item-section>
+
+              <q-item-section>
+                Histoires
+              </q-item-section>
+            </q-item>
+
           </q-list>
     </q-drawer>
 
@@ -79,6 +107,7 @@
 
 <script>
 import { openURL } from 'quasar';
+import { mapGetters } from 'vuex';
 import Corner from 'components/Corner.vue';
 
 export default {
@@ -91,6 +120,11 @@ export default {
       drawer: true,
       miniState: true,
     };
+  },
+  computed: {
+    ...mapGetters('user', [
+      'isAuthenticated',
+    ]),
   },
   methods: {
     openURL,

@@ -53,10 +53,11 @@ module.exports = function (ctx) {
         'QCardSection',
         'QCardActions',
         'QSelect',
+        'QSeparator',
       ],
 
       directives: [
-        'Ripple'
+        'Ripple',
       ],
 
       // Quasar plugins

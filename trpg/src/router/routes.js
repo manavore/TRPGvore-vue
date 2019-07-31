@@ -9,7 +9,24 @@ const routes = [
       },
       {
         path: '/',
+        name: 'home',
         component: () => import('pages/Index.vue'),
+      },
+      {
+        path: '/main',
+        component: () => import('pages/Main.vue'),
+      },
+      {
+        path: '/skill',
+        component: () => import('pages/Skill.vue'),
+      },
+      {
+        path: '/inventory',
+        component: () => import('pages/Inventory.vue'),
+      },
+      {
+        path: '/story',
+        component: () => import('pages/Story.vue'),
       },
     ],
   },
