@@ -1,5 +1,5 @@
 <template>
-  <q-select v-model="selection" :options="this.getCharactersNames" label="Personnage" />
+  <q-select v-model="selection" :options="this.getCharactersNames || ['']" label="Personnage" />
 </template>
 
 <script>
@@ -12,7 +12,7 @@ export default {
       selection: null,
     };
   },
-  created() {
+  mounted() {
     this.fetchCharacters();
   },
   computed: {

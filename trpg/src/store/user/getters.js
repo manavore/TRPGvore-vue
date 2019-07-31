@@ -16,11 +16,16 @@ export function getToken(state) {
 }
 
 export function getUserName(state) {
-  return state.user.name;
+  return state.info.name;
+}
+
+export function getUserId(state) {
+  // eslint-disable-next-line no-underscore-dangle
+  return state.info._id;
 }
 
 export function getCharactersNames(state) {
-  const c = state.user.characters;
+  const c = state.info.characters;
   return c.map(a => a.name);
 }
 
@@ -30,4 +35,12 @@ export function getStatus(state) {
 
 export function isAuthenticated(state) {
   return !!state.token;
+}
+
+export function getUserDiceId(state) {
+  return state.info.dice;
+}
+
+export function hasUserDice(state) {
+  return !!state.info.dice && state.info.dice.length > 10;
 }

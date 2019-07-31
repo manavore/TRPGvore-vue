@@ -25,7 +25,7 @@ export async function newCharacter({ commit, state }, characterName) {
     });
 
   // eslint-disable-next-line no-underscore-dangle
-  await api.patchUser(state.user._id, res._id)
+  await api.patchUser(state.info._id, { characterid: res._id })
     .catch((err) => {
       console.error(err);
     });
@@ -33,9 +33,19 @@ export async function newCharacter({ commit, state }, characterName) {
   commit('ADD_CHARACTER', { character: res });
 }
 
+export async function newDice({ commit, state }, diceid) {
+  // eslint-disable-next-line no-underscore-dangle
+  await api.patchUser(state.info._id, { diceid })
+    .catch((err) => {
+      console.error(err);
+    });
+
+  commit('UPDATE_DICE', { diceid });
+}
+
 export async function fetchCharacters({ commit, state }) {
   // eslint-disable-next-line no-underscore-dangle
-  return api.getUser(state.user._id, true, false)
+  return api.getUser(state.info._id, true, false)
     .then((res) => {
       commit('UPDATE_CHARACTERS', { characters: res });
     }).catch(err => console.error(err));

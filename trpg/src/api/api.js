@@ -34,18 +34,30 @@ export default class APIService {
       .then(res => res.data.characters);
   }
 
-  static async patchUser(id, charaid) {
+  static async patchUser(id, { characterid, diceid }) {
     return axios.patch(`${USER_URL}${id}`,
-      { characterid: charaid })
+      {
+        characterid,
+        diceid,
+      })
       .then(res => res.data.characters);
   }
 
   // dice
 
   // Thoses functions have to be tested again
-  static async getDice() {
-    return axios.get(DICE_URL)
+  static async getDie(id) {
+    return axios.get(`${DICE_URL}${id}`)
       .then(res => res.data)
+      .catch(err => console.log(err));
+  }
+
+  static async postDie(id) {
+    return axios.post(DICE_URL,
+      {
+        owner: id,
+      })
+      .then(res => res.data.savedDie)
       .catch(err => console.log(err));
   }
 

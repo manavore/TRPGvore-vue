@@ -3,6 +3,8 @@ import Vuex from 'vuex';
 
 // import example from './module-example'
 import user from './user';
+import dice from './dice';
+
 
 Vue.use(Vuex);
 
@@ -16,6 +18,7 @@ export default function (/* { ssrContext } */) {
     modules: {
       // example
       user,
+      dice,
     },
 
     // enable strict mode (adds overhead!)
