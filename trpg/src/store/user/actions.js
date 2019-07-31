@@ -11,6 +11,13 @@ export async function fetchToken({ commit }, credentials) {
     });
 }
 
+export async function disconnect({ commit }) {
+  return new Promise((resolve) => {
+    commit('AUTH_LOGOUT');
+    resolve();
+  });
+}
+
 export async function newCharacter({ commit, state }, characterName) {
   const res = await api.postCharacter(characterName)
     .catch((err) => {

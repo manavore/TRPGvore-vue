@@ -96,6 +96,22 @@
               </q-item-section>
             </q-item>
 
+            <q-separator />
+
+            <q-item
+              clickable v-ripple
+              :to="{ path: '/login' }"
+              @click="disconnect"
+            >
+              <q-item-section avatar>
+                <q-icon name="fas fa-sign-out-alt" />
+              </q-item-section>
+
+              <q-item-section>
+                Se déconnecter
+              </q-item-section>
+            </q-item>
+
           </q-list>
     </q-drawer>
 
@@ -107,7 +123,7 @@
 
 <script>
 import { openURL } from 'quasar';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import Corner from 'components/Corner.vue';
 
 export default {
@@ -128,6 +144,9 @@ export default {
   },
   methods: {
     openURL,
+    ...mapActions('user', [
+      'disconnect',
+    ]),
   },
 };
 </script>
