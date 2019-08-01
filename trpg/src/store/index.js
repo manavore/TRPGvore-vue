@@ -4,7 +4,7 @@ import Vuex from 'vuex';
 // import example from './module-example'
 import user from './user';
 import dice from './dice';
-
+import character from './character';
 
 Vue.use(Vuex);
 
@@ -19,12 +19,12 @@ export default function (/* { ssrContext } */) {
       // example
       user,
       dice,
+      character,
     },
 
     // enable strict mode (adds overhead!)
     // for dev mode only
-    // strict: process.env.DEV,
-    strict: true,
+    strict: process.env.DEV,
   });
 
   return Store;

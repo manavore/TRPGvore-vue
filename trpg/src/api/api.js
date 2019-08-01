@@ -73,10 +73,11 @@ export default class APIService {
     return axios.get(`${CHARACTER_URL}${id}`, {
       params: {
         withDetails: '1',
+        withInventory: '1',
       },
     })
       .then(res => res.data)
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }
 
   static async postCharacter(name) {

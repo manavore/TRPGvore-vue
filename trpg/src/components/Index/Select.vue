@@ -1,5 +1,10 @@
 <template>
-  <q-select v-model="selection" :options="this.getCharactersNames || ['']" label="Personnage" />
+  <q-select
+    v-model="selection"
+    :options="this.getCharactersNames || ['']"
+    label="Personnage"
+    @input="onSelect"
+  />
 </template>
 
 <script>
@@ -13,7 +18,7 @@ export default {
     };
   },
   mounted() {
-    this.fetchCharacters();
+    this['user/fetchCharacters']();
   },
   computed: {
     ...mapGetters('user', [
@@ -21,9 +26,13 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions('user', [
-      'fetchCharacters',
+    ...mapActions([
+      'user/fetchCharacters',
+      'character/loadCharacter',
     ]),
+    onSelect() {
+      this['character/loadCharacter'](this.selection.value);
+    },
   },
 };
 </script>

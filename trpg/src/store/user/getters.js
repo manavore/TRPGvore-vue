@@ -26,7 +26,8 @@ export function getUserId(state) {
 
 export function getCharactersNames(state) {
   const c = state.info.characters;
-  return c.map(a => a.name);
+  // eslint-disable-next-line no-underscore-dangle
+  return c.map(a => ({ label: a.name, value: a._id }));
 }
 
 export function getStatus(state) {
