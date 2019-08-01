@@ -13,7 +13,7 @@
         <h4>Connexion</h4>
         <q-input
           v-model="name"
-          hint="Nom d'utilisateur"
+          label="Nom d'utilisateur"
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'Ce Champ ne doit pas être vide']"
         />
@@ -21,7 +21,7 @@
         <q-input
           :type="isPwd ? 'password' : 'text'"
           v-model="password"
-          hint="Mot de passe"
+          label="Mot de passe"
           lazy-rules
           :rules="[ val => val && val.length > 0 || 'Ce Champ ne doit pas être vide']"
         > <template v-slot:append>
@@ -108,7 +108,6 @@ export default {
         },
       );
     },
-
     onReset() {
       this.name = null;
       this.password = null;

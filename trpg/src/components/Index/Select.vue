@@ -30,8 +30,11 @@ export default {
       'user/fetchCharacters',
       'character/loadCharacter',
     ]),
-    onSelect() {
-      this['character/loadCharacter'](this.selection.value);
+    async onSelect() {
+      await this['character/loadCharacter'](this.selection.value)
+        .then(() => {
+          this.$router.push('/main');
+        });
     },
   },
 };

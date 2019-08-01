@@ -18,7 +18,7 @@
             >
               <q-input
                 v-model="name"
-                hint="Nom du personnage"
+                label="Nom du personnage"
                 lazy-rules
                 :rules="[ val => val && val.length > 0 || 'Ce Champ ne doit pas être vide']"
               />
@@ -91,7 +91,6 @@ export default {
       'newCharacter',
     ]),
     async onSubmit() {
-      console.log(this.name);
       await this.newCharacter(this.name);
     },
     onReset() {

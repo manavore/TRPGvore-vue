@@ -1,8 +1,24 @@
 export default {
   current: {
-    alive: true,
-    _id: '',
     name: '',
-    details: [],
+    details: [
+      {
+        field: 'Âge',
+        description: '',
+      },
+      {
+        field: 'Taille',
+        description: '',
+      },
+      {
+        field: 'Corpulence',
+        description: '',
+      },
+      {
+        field: 'Genre',
+        description: '',
+      },
+    ],
+    physical: '',
   },
 };

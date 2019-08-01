@@ -1,2 +1,3 @@
-export function someGetter(/* state */) {
+export function getCharacter(state) {
+  return state.current;
 }

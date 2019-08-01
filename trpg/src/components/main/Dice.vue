@@ -18,9 +18,6 @@
 </template>
 
 <style lang="stylus" scoped>
-.my-card
-  width: 100%
-  max-width: 150px
 </style>
 
 <script>
