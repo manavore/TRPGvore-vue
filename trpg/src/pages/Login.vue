@@ -2,8 +2,7 @@
   <q-page class="flex flex-center">
 
     <div
-      class="q-pa-md"
-      style="max-width: 400px"
+      class="q-pa-md mana-form"
     >
 
       <q-form
@@ -55,7 +54,11 @@
   </q-page>
 </template>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.mana-form
+  width: 100%
+  max-width: 400px
+</style>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';

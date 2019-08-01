@@ -5,10 +5,9 @@
       style=""
     >
 
-      <div class="row q-gutter-md">
+      <div class="row q-gutter-lg">
         <div
-          class="col"
-          style="min-width: 360px"
+          class="col mana-box"
         >
             <h4>Nouveau personnage</h4>
 
@@ -44,12 +43,11 @@
 
         </div>
 
-      <div class="col flex flex-center">
+      <div class="col-auto flex flex-center">
         <h4> OU </h4>
       </div>
 
-        <div class="col"
-          style="min-width: 360px"
+        <div class="col mana-box"
         >
           <h4>Choisir un personnage</h4>
           <SelectPersonnage />
@@ -61,8 +59,12 @@
   </q-page>
 </template>
 
-<style>
+<style lang="stylus" scoped>
+.mana-box
+  width: 100%
+  min-width: 360px
 </style>
+
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
