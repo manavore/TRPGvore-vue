@@ -20,12 +20,16 @@
             color="primary"
             dense
             icon="fas fa-minus-square"
+            :disable="lowerBound(abi.score)"
+            @click="--abi.score"
           />
           <q-btn
             flat
             color="primary"
             dense
             icon="fas fa-plus-square"
+            :disable="upperBound(abi.score)"
+            @click="++abi.score"
           />
         </q-btn-group>
       </q-card-actions>
@@ -64,6 +68,12 @@ export default {
     modifier(val) {
       const v = this.calcModifier(val);
       return v > -1 ? `+${v}` : v;
+    },
+    lowerBound(val) {
+      return val <= 1;
+    },
+    upperBound(val) {
+      return val >= 30;
     },
   },
 };
