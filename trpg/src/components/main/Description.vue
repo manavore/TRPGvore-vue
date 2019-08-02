@@ -3,21 +3,21 @@
     <div class="text-h5">Description</div>
 
     <q-input
-      v-model="character.name"
+      v-model="name"
       label="Nom du personnage"
       unelevated
       maxlength=30
-      @blur="edit({ name: character.name })"
+      @blur="edit({ name })"
     />
 
     <q-input
-      v-for="obj in character.details"
+      v-for="obj in details"
       v-bind:key="obj.field"
       v-model="obj.description"
       :label="obj.field"
       unelevated
       maxlength=30
-      @blur="edit({ details: character.details })"
+      @blur="edit({ details })"
     />
   </q-form>
 </template>
@@ -31,17 +31,20 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   data() {
     return {
-      character: {},
+      name: '',
+      details: [],
     };
   },
   computed: {
     ...mapGetters('character', [
-      'getCharacter',
+      'getCharacterName',
+      'getCharacterDetails',
     ]),
   },
   created() {
-    // Pfahaha this is ugly but only way to avoid binding v-model to store
-    this.character = JSON.parse(JSON.stringify(this.getCharacter));
+    this.name = this.getCharacterName;
+    // Ugly but only way to avoid binding v-model to store
+    this.details = JSON.parse(JSON.stringify(this.getCharacterDetails));
   },
   methods: {
     ...mapActions('character', [
