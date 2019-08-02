@@ -16,103 +16,118 @@
           Manavore RPG Manager
         </q-toolbar-title>
 
-        <div><Corner /></div>
+        <div>
+          <Corner />
+        </div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="drawer"
-      v-if="isAuthenticated"
+      v-if="this['user/isAuthenticated']"
       content-class="bg-grey-2"
       :mini="miniState"
       @mouseover="miniState = false"
       @mouseout="miniState = true"
     >
-          <q-list padding class="menu-list">
-            <q-item
-              clickable v-ripple
-              :to="{ name: 'home' }"
-            >
-              <q-item-section avatar>
-                <q-icon name="fab fa-fort-awesome" />
-              </q-item-section>
+      <q-list
+        padding
+        class="menu-list"
+      >
+        <q-item
+          clickable
+          v-ripple
+          :to="{ name: 'home' }"
+        >
+          <q-item-section avatar>
+            <q-icon name="fab fa-fort-awesome" />
+          </q-item-section>
 
-              <q-item-section>
-                Mes personnages
-              </q-item-section>
-            </q-item>
+          <q-item-section>
+            Mes personnages
+          </q-item-section>
+        </q-item>
 
-            <q-separator />
+        <q-separator />
 
-            <q-item
-              clickable v-ripple
-              :to="{ path: '/main' }"
-            >
-              <q-item-section avatar>
-                <q-icon name="fas fa-address-card" />
-              </q-item-section>
+        <q-item
+          clickable
+          v-ripple
+          :disable="!this['character/isCharacterSelected']"
+          :to="{ path: '/main' }"
+        >
+          <q-item-section avatar>
+            <q-icon name="fas fa-address-card" />
+          </q-item-section>
 
-              <q-item-section>
-                Général
-              </q-item-section>
-            </q-item>
+          <q-item-section>
+            Général
+          </q-item-section>
+        </q-item>
 
-            <q-item
-              clickable v-ripple
-              :to="{ path: '/inventory' }"
-            >
-              <q-item-section avatar>
-                <q-icon name="fas fa-briefcase" />
-              </q-item-section>
+        <q-item
+          clickable
+          v-ripple
+          :disable="!this['character/isCharacterSelected']"
+          :to="{ path: '/inventory' }"
+        >
+          <q-item-section avatar>
+            <q-icon name="fas fa-briefcase" />
+          </q-item-section>
 
-              <q-item-section>
-                Inventaire
-              </q-item-section>
-            </q-item>
+          <q-item-section>
+            Inventaire
+          </q-item-section>
+        </q-item>
 
-            <q-item
-              clickable v-ripple
-              :to="{ path: '/skill' }"
-            >
-              <q-item-section avatar>
-                <q-icon name="fas fa-book-dead" />
-              </q-item-section>
+        <q-item
+          clickable
+          v-ripple
+          :disable="!this['character/isCharacterSelected']"
+          :to="{ path: '/skill' }"
+        >
+          <q-item-section avatar>
+            <q-icon name="fas fa-book-dead" />
+          </q-item-section>
 
-              <q-item-section>
-                Compétences
-              </q-item-section>
-            </q-item>
+          <q-item-section>
+            Compétences
+          </q-item-section>
+        </q-item>
 
-            <q-item
-              clickable v-ripple
-              :to="{ path: '/story' }"
-            >
-              <q-item-section avatar>
-                <q-icon name="fas fa-scroll" />
-              </q-item-section>
+        <q-item
+          clickable
+          v-ripple
+          :disable="!this['character/isCharacterSelected']"
+          :to="{ path: '/story' }"
+        >
+          <q-item-section avatar>
+            <q-icon name="fas fa-scroll" />
+          </q-item-section>
 
-              <q-item-section>
-                Histoires
-              </q-item-section>
-            </q-item>
+          <q-item-section>
+            Histoires
+          </q-item-section>
+        </q-item>
 
-            <q-separator />
+        <q-separator />
 
-            <q-item
-              clickable v-ripple
-              :to="{ path: '/login' }"
-              @click="disconnect"
-            >
-              <q-item-section avatar>
-                <q-icon name="fas fa-sign-out-alt" />
-              </q-item-section>
+        <q-item
+          clickable
+          v-ripple
+          :to="{ path: '/login' }"
+          @click="disconnect"
+        >
+          <q-item-section avatar>
+            <q-icon name="fas fa-sign-out-alt" />
+          </q-item-section>
 
-              <q-item-section>
-                Se déconnecter
-              </q-item-section>
-            </q-item>
+          <q-item-section>
+            Se déconnecter
+          </q-item-section>
+        </q-item>
 
-          </q-list>
+      </q-list>
     </q-drawer>
 
     <q-page-container>
@@ -138,8 +153,9 @@ export default {
     };
   },
   computed: {
-    ...mapGetters('user', [
-      'isAuthenticated',
+    ...mapGetters([
+      'user/isAuthenticated',
+      'character/isCharacterSelected',
     ]),
   },
   methods: {

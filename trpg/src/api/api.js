@@ -74,6 +74,7 @@ export default class APIService {
       params: {
         withDetails: '1',
         withInventory: '1',
+        withAbilities: '1',
       },
     })
       .then(res => res.data)
