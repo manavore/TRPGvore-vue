@@ -22,4 +22,47 @@ export default {
   UPDATE_NAME: (state, n) => {
     state.current.name = n;
   },
+  RESET_CHARACTER: (state) => {
+    state.current = {
+      _id: null,
+      name: '',
+      details: [
+        {
+          field: 'Âge',
+          description: '',
+        },
+        {
+          field: 'Taille',
+          description: '',
+        },
+        {
+          field: 'Corpulence',
+          description: '',
+        },
+        {
+          field: 'Genre',
+          description: '',
+        },
+      ],
+      abilities: [
+        {
+          name: 'Force',
+          score: 11,
+        },
+        {
+          name: 'Endurance',
+          score: 11,
+        },
+        {
+          name: 'Agilité',
+          score: 11,
+        },
+        {
+          name: 'Habileté',
+          score: 11,
+        },
+      ],
+      physical: '',
+    };
+  },
 };

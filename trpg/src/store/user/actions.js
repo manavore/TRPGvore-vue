@@ -14,6 +14,7 @@ export async function fetchToken({ commit }, credentials) {
 export async function disconnect({ commit }) {
   return new Promise((resolve) => {
     commit('AUTH_LOGOUT');
+    commit('character/RESET_CHARACTER', null, { root: true });
     resolve();
   });
 }

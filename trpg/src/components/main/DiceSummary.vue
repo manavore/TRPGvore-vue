@@ -4,7 +4,7 @@
       <q-item-label header>Historique des lancés</q-item-label>
 
       <q-item  v-for="d in dice" :key="d._id" v-ripple>
-        <q-item-section>
+        <q-item-section bottom>
           <q-item-label>{{ d.value }}</q-item-label>
           <q-item-label caption>{{ d.owner !== null? d.owner.name : '' }}</q-item-label>
         </q-item-section>
@@ -50,12 +50,17 @@ export default {
   },
   async created() {
     this.dice = await api.getAllDie();
+    this.timer();
   },
   methods: {
     calcTime(timestamp) {
       const d = moment().diff(timestamp);
 
       return moment.duration(d).locale('fr').humanize();
+    },
+    async timer() {
+      this.dice = await api.getAllDie();
+      setTimeout(() => this.timer(), 3000);
     },
   },
 };

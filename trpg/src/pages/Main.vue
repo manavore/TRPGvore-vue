@@ -3,6 +3,7 @@
 
       <div class="col-md-2 col-sm-2">
         <Dice />
+        <DiceSummary />
       </div>
 
       <div class="col-md-7 col-sm-7 mana-box">
@@ -25,6 +26,7 @@
 import Dice from 'components/main/Dice.vue';
 import Description from 'components/main/Description.vue';
 import Abilities from 'components/main/Abilities.vue';
+import DiceSummary from 'components/main/DiceSummary.vue';
 
 export default {
   name: 'PageMain',
@@ -32,6 +34,7 @@ export default {
     Dice,
     Description,
     Abilities,
+    DiceSummary,
   },
 };
 </script>
