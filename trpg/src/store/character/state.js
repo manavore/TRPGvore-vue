@@ -27,15 +27,15 @@ export default {
       },
       {
         name: 'Endurance',
-        score: 13,
+        score: 11,
       },
       {
         name: 'Agilité',
-        score: 15,
+        score: 11,
       },
       {
         name: 'Habileté',
-        score: 17,
+        score: 11,
       },
     ],
     physical: '',

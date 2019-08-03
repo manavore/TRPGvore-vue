@@ -45,7 +45,16 @@ export default class APIService {
 
   // dice
 
-  // Thoses functions have to be tested again
+  static async getAllDie() {
+    return axios.get(DICE_URL, {
+      params: {
+        withOwner: '1',
+      },
+    })
+      .then(res => res.data)
+      .catch(err => console.log(err));
+  }
+
   static async getDie(id) {
     return axios.get(`${DICE_URL}${id}`)
       .then(res => res.data)
