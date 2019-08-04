@@ -6,7 +6,7 @@
 
         <q-btn-group flat>
           <q-btn
-            v-for="(value, index) in points"
+            v-for="(value, index) in damage"
             :key="index"
             :icon="iconSelect(value)"
             stretch
@@ -27,6 +27,19 @@
       </q-card-actions>
 
       <q-card-actions align="right">
+
+        <q-btn
+        flat
+        @click="clearDamage()"
+        >
+          <q-icon
+            color="positive"
+            left
+            name="fas fa-first-aid"
+          />
+          Récupération
+        </q-btn>
+
 
         <q-btn
         flat
@@ -60,7 +73,7 @@
 export default {
   data() {
     return {
-      points: [
+      damage: [
         3,
         2,
         1,
@@ -94,7 +107,7 @@ export default {
   methods: {
     takeDamage(change) {
       let c = change;
-      this.points = this.points.map((x) => {
+      this.damage = this.damage.map((x) => {
         if (x < c) {
           const delta = c - x;
           c -= delta;
@@ -104,10 +117,15 @@ export default {
       });
     },
     healDamage(change) {
-      const newPoints = this.points.filter(x => x !== change);
-      while (newPoints.length < this.points.length) newPoints.push(0);
-      this.points = newPoints;
+      const newPoints = this.damage.filter(x => x !== change);
+      while (newPoints.length < this.damage.length) newPoints.push(0);
+      this.damage = newPoints;
       this.takeDamage(change - 1);
+    },
+    clearDamage() {
+      const newPoints = this.damage.filter(x => x === 0);
+      while (newPoints.length < this.damage.length) newPoints.push(0);
+      this.damage = newPoints;
     },
     iconSelect(val) {
       switch (val) {
