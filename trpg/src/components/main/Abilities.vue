@@ -19,7 +19,7 @@
             flat
             color="primary"
             dense
-            icon="fas fa-minus-square"
+            icon="fas fa-minus"
             :disable="lowerBound(abi.score)"
             @click="--abi.score"
           />
@@ -27,7 +27,7 @@
             flat
             color="primary"
             dense
-            icon="fas fa-plus-square"
+            icon="fas fa-plus"
             :disable="upperBound(abi.score)"
             @click="++abi.score"
           />
