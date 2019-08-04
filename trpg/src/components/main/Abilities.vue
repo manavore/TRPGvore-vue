@@ -8,13 +8,13 @@
       <q-card-section class="bg-primary text-white text-center">
         <div class="text-h7">{{ abi.name }}</div>
         <div class="text-h6">{{ abi.score }}</div>
-        <div class="text-h5">{{ modifier(abi.score) }}</div>
+        <div class="text-h4">{{ modifier(abi.score) }}</div>
       </q-card-section>
 
       <q-separator />
 
       <q-card-actions align="right">
-        <q-btn-group spread>
+        <q-btn-group spread flat>
           <q-btn
             flat
             color="primary"

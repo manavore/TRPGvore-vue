@@ -74,9 +74,9 @@ export default {
   data() {
     return {
       damage: [
-        3,
-        2,
-        1,
+        0,
+        0,
+        0,
         0,
         0,
         0,
@@ -120,7 +120,6 @@ export default {
       const newPoints = this.damage.filter(x => x !== change);
       while (newPoints.length < this.damage.length) newPoints.push(0);
       this.damage = newPoints;
-      this.takeDamage(change - 1);
     },
     clearDamage() {
       const newPoints = this.damage.filter(x => x === 0);
