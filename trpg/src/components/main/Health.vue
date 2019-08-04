@@ -28,7 +28,10 @@
 
       <q-card-actions align="right">
 
-        <q-btn flat>
+        <q-btn
+        flat
+        @click="healDamage(selected.value)"
+        >
           <q-icon
             color="primary"
             left
@@ -37,7 +40,10 @@
           Soigner
         </q-btn>
 
-        <q-btn flat>
+        <q-btn
+        flat
+        @click="takeDamage(selected.value)"
+        >
           Infliger
           <q-icon
             color="negative"
@@ -63,7 +69,10 @@ export default {
         0,
         0,
       ],
-      selected: null,
+      selected: {
+        label: 'Légère',
+        value: 1,
+      },
       options: [
         {
           label: 'Légère',
@@ -80,7 +89,26 @@ export default {
       ],
     };
   },
+  computed: {
+  },
   methods: {
+    takeDamage(change) {
+      let c = change;
+      this.points = this.points.map((x) => {
+        if (x < c) {
+          const delta = c - x;
+          c -= delta;
+          return x + delta;
+        }
+        return x;
+      });
+    },
+    healDamage(change) {
+      const newPoints = this.points.filter(x => x !== change);
+      while (newPoints.length < this.points.length) newPoints.push(0);
+      this.points = newPoints;
+      this.takeDamage(change - 1);
+    },
     iconSelect(val) {
       switch (val) {
         case 3:
