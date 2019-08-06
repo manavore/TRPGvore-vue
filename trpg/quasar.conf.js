@@ -55,6 +55,7 @@ module.exports = function f(ctx) {
         'QSelect',
         'QSeparator',
         'QBtnGroup',
+        'QTooltip',
       ],
 
       directives: [

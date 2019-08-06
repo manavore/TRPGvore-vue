@@ -1,6 +1,6 @@
 <template>
     <q-page class="flex flex-center">
-      Story
+      Work in progress: Story page
     </q-page>
 </template>
 

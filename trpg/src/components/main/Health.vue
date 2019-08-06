@@ -2,7 +2,14 @@
   <div>
     <q-card>
       <q-card-section class="bg-negative text-white">
-        <div class="text-h5">Santé</div>
+        <div class="text-h5">Santé
+          <q-tooltip :delay="700" anchor="top middle" self="bottom middle">
+            Exemples: <br />
+            Superficielle: petites blessures, récupération naturelle. <br />
+            Létale: poignardé, blessure par balle. Requiert un traitement médicale.  <br />
+            Aggravé: retombée nucléaire, ou cause surnaturelle. <br />
+          </q-tooltip>
+        </div>
 
         <q-btn-group flat>
           <q-btn
@@ -24,6 +31,7 @@
           style="width: 100%"
           dense
         />
+
       </q-card-actions>
 
       <q-card-actions align="right">
@@ -32,12 +40,12 @@
         flat
         @click="clearDamage()"
         >
+          Récupérer
           <q-icon
             color="positive"
-            left
+            right
             name="fas fa-first-aid"
           />
-          Récupération
         </q-btn>
 
 
@@ -45,12 +53,12 @@
         flat
         @click="healDamage(selected.value)"
         >
+          Soigner
           <q-icon
             color="primary"
-            left
+            right
             name="fas fa-band-aid"
           />
-          Soigner
         </q-btn>
 
         <q-btn
@@ -64,6 +72,7 @@
             name="fas fa-burn"
           />
         </q-btn>
+
       </q-card-actions>
     </q-card>
   </div>
@@ -83,16 +92,16 @@ export default {
         0,
       ],
       selected: {
-        label: 'Légère',
+        label: 'Superficielle',
         value: 1,
       },
       options: [
         {
-          label: 'Légère',
+          label: 'Superficielle',
           value: 1,
         },
         {
-          label: 'Léthale',
+          label: 'létale',
           value: 2,
         },
         {
