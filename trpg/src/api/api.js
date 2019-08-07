@@ -70,8 +70,12 @@ export default class APIService {
       .catch(err => console.log(err));
   }
 
-  static async putDie(id) {
-    return axios.put(`${DICE_URL}${id}`)
+  static async putDie(id, number, kind) {
+    return axios.put(`${DICE_URL}${id}`,
+      {
+        number,
+        kind,
+      })
       .then(res => res.data)
       .catch(err => console.log(err));
   }

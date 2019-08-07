@@ -63,6 +63,7 @@ module.exports = function f(ctx) {
         'QPopupEdit',
         'QSpace',
         'QCheckbox',
+        'QToggle',
       ],
 
       directives: [

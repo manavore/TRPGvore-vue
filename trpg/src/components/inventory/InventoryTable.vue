@@ -80,6 +80,7 @@
             <q-popup-edit
               v-model="props.row.name"
               title="Modifier le nom"
+              @save="push()"
             >
               <q-input
                 v-model="props.row.name"
@@ -98,6 +99,7 @@
             <q-popup-edit
               v-model="props.row.effect"
               title="Modifier l'effet"
+              @save="push()"
             >
               <q-input
                 v-model="props.row.effect"
@@ -115,6 +117,7 @@
             <q-popup-edit
               v-model="props.row.bonus"
               title="Modifier le bonus"
+              @save="push()"
             >
               <q-input
                 v-model="props.row.bonus"
@@ -129,7 +132,7 @@
             :props="props"
           >
             {{ props.row.quantity }}
-            <q-popup-edit v-model="props.row.quantity">
+            <q-popup-edit v-model="props.row.quantity" @save="push()">
               <q-input
                 v-model="props.row.quantity"
                 dense
@@ -145,7 +148,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import { debounce } from 'quasar';
 
 export default {
   data() {
@@ -192,8 +196,13 @@ export default {
   created() {
     // Ugly but only way to avoid binding v-model to store
     this.data = JSON.parse(JSON.stringify(this.getEquipements));
+
+    this.push = debounce(this.push, 5000);
   },
   methods: {
+    ...mapActions('character', [
+      'editCharacter',
+    ]),
     addRow() {
       this.loading = true;
       setTimeout(() => {
@@ -201,6 +210,7 @@ export default {
           name: this.name, effect: '', bonus: '', quantity: 1,
         });
         this.loading = false;
+        this.push();
       }, 500);
     },
     removeRow() {
@@ -212,7 +222,15 @@ export default {
         const index = this.selected[0].__index;
         this.data = [...this.data.slice(0, index), ...this.data.slice(index + 1)];
         this.loading = false;
+        this.push();
       }, 500);
+    },
+    async push() {
+      await this.editCharacter({
+        inventory: {
+          equipements: this.data,
+        },
+      });
     },
   },
 };

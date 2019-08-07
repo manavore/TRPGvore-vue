@@ -29,9 +29,9 @@ export async function newDice({
   return getters.getValue;
 }
 
-export async function rollDie({ commit, getters }) {
+export async function rollDie({ commit, getters }, { number, kind }) {
   try {
-    const die = await api.putDie(getters.getId);
+    const die = await api.putDie(getters.getId, number, kind);
 
     commit('UPDATE_DICE', { die });
   } catch (err) {

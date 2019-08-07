@@ -24,6 +24,7 @@ import api from '../../api/api';
 export default {
   data() {
     return {
+      timer: null,
       dice: [
         {
           value: [
@@ -50,7 +51,10 @@ export default {
   },
   async created() {
     this.dice = await api.getAllDie();
-    this.timer();
+    this.pull();
+  },
+  beforeDestroy() {
+    clearTimeout(this.timer);
   },
   methods: {
     calcTime(timestamp) {
@@ -58,9 +62,9 @@ export default {
 
       return moment.duration(d).locale('fr').humanize();
     },
-    async timer() {
+    async pull() {
       this.dice = await api.getAllDie();
-      setTimeout(() => this.timer(), 3000);
+      this.timer = setTimeout(() => this.pull(), 5000);
     },
   },
 };
