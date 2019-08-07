@@ -41,7 +41,7 @@
             lazy-rules
             :rules="[ val => val && val.length > 0 || 'Pas vide']"
           />
-          <q-btn label="Ajouter" type="submit" color="positive" class="on-left">
+          <q-btn label="Ajouter" type="submit" color="positive" class="on-left no-shadow">
           <q-icon
             right
             name="fas fa-plus"
