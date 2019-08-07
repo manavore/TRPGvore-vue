@@ -18,3 +18,7 @@ export function isCharacterSelected(state) {
   // eslint-disable-next-line no-underscore-dangle
   return !!state.current._id;
 }
+
+export function getEquipements(state) {
+  return state.current.inventory.equipements;
+}

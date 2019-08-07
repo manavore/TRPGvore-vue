@@ -38,6 +38,22 @@ export default {
         score: 11,
       },
     ],
-    physical: '',
+    inventory: {
+      fortune: 1,
+      equipements: [
+        {
+          name: 'Sac à dos',
+          effect: '',
+          bonus: '',
+          quantity: 1,
+        },
+        {
+          name: 'Cartes à jouer',
+          effect: 'Idéal pour tuer le temps',
+          bonus: '',
+          quantity: 48,
+        },
+      ],
+    },
   },
 };
