@@ -22,3 +22,7 @@ export function isCharacterSelected(state) {
 export function getEquipements(state) {
   return state.current.inventory.equipements;
 }
+
+export function getHealth(state) {
+  return state.current.health;
+}

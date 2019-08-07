@@ -17,6 +17,14 @@ export default {
       if (c.abilities) {
         state.current.abilities = c.abilities;
       }
+
+      if (c.inventory) {
+        state.current.inventory = c.inventory;
+      }
+
+      if (c.health) {
+        state.current.health = c.health;
+      }
     }
   },
   UPDATE_NAME: (state, n) => {

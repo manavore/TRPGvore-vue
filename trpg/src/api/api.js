@@ -84,6 +84,7 @@ export default class APIService {
         withDetails: '1',
         withInventory: '1',
         withAbilities: '1',
+        withHealth: '1',
       },
     })
       .then(res => res.data)

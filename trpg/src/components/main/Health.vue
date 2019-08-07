@@ -79,6 +79,9 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex';
+import { debounce } from 'quasar';
+
 export default {
   data() {
     return {
@@ -111,9 +114,21 @@ export default {
       ],
     };
   },
+  created() {
+    this.push = debounce(this.push, 5000);
+
+    // Ugly but only way to avoid binding v-model to store
+    this.damage = JSON.parse(JSON.stringify(this.getHealth));
+  },
   computed: {
+    ...mapGetters('character', [
+      'getHealth',
+    ]),
   },
   methods: {
+    ...mapActions('character', [
+      'editCharacter',
+    ]),
     takeDamage(change) {
       let c = change;
       this.damage = this.damage.map((x) => {
@@ -124,16 +139,19 @@ export default {
         }
         return x;
       });
+      this.push();
     },
     healDamage(change) {
       const newPoints = this.damage.filter(x => x !== change);
       while (newPoints.length < this.damage.length) newPoints.push(0);
       this.damage = newPoints;
+      this.push();
     },
     clearDamage() {
       const newPoints = this.damage.filter(x => x === 0);
       while (newPoints.length < this.damage.length) newPoints.push(0);
       this.damage = newPoints;
+      this.push();
     },
     iconSelect(val) {
       switch (val) {
@@ -147,6 +165,9 @@ export default {
         default:
           return 'fas fa-heart';
       }
+    },
+    push() {
+      this.editCharacter({ health: this.damage });
     },
   },
 };

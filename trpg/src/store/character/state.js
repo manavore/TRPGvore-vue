@@ -2,6 +2,7 @@ export default {
   current: {
     _id: null,
     name: '',
+    health: [0, 0, 0, 0, 0, 0, 0],
     details: [
       {
         field: 'Âge',
