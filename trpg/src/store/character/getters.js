@@ -10,7 +10,7 @@ export function getCharacterName(state) {
   return state.current.name;
 }
 
-export function getCharacterAbilities(state) {
+export function getAbilities(state) {
   return state.current.abilities;
 }
 

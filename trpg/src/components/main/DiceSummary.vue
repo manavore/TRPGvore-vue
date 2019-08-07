@@ -1,5 +1,5 @@
 <template>
-  <div class="q-pa-md" style="width: 100%; max-width: 250px">
+  <div class="q-pa-md" style="width: 100%; max-width: 400px">
     <q-list bordered separator>
       <q-item-label header>Historique des lancés</q-item-label>
 

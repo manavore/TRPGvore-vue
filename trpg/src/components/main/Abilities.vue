@@ -21,7 +21,7 @@
             dense
             icon="fas fa-minus"
             :disable="lowerBound(abi.score)"
-            @click="--abi.score"
+            @click="--abi.score; push()"
           />
           <q-btn
             flat
@@ -29,7 +29,7 @@
             dense
             icon="fas fa-plus"
             :disable="upperBound(abi.score)"
-            @click="++abi.score"
+            @click="++abi.score; push()"
           />
         </q-btn-group>
       </q-card-actions>
@@ -44,24 +44,34 @@
 
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
+import { debounce } from 'quasar';
 
 export default {
   data() {
     return {
-      abilities: [],
+      abilities: [
+        {
+          name: 'Force',
+          score: 11,
+        }],
     };
   },
   created() {
     // Ugly but only way to avoid binding v-model to store
-    this.abilities = JSON.parse(JSON.stringify(this.getCharacterAbilities));
+    this.abilities = JSON.parse(JSON.stringify(this.getAbilities));
+
+    this.push = debounce(this.push, 5000);
   },
   computed: {
     ...mapGetters('character', [
-      'getCharacterAbilities',
+      'getAbilities',
     ]),
   },
   methods: {
+    ...mapActions('character', [
+      'editCharacter',
+    ]),
     calcModifier(val) {
       return Math.floor((val - 10) / 2);
     },
@@ -74,6 +84,9 @@ export default {
     },
     upperBound(val) {
       return val >= 30;
+    },
+    push() {
+      this.editCharacter({ abilities: this.abilities });
     },
   },
 };

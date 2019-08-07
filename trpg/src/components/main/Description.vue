@@ -7,7 +7,7 @@
       label="Nom du personnage"
       unelevated
       maxlength=30
-      @blur="edit({ name })"
+      @blur="push({ name })"
     />
 
     <q-input
@@ -17,7 +17,7 @@
       :label="obj.field"
       unelevated
       maxlength=30
-      @blur="edit({ details })"
+      @blur="push({ details })"
     />
   </q-form>
 </template>
@@ -27,6 +27,7 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex';
+import { debounce } from 'quasar';
 
 export default {
   data() {
@@ -43,6 +44,8 @@ export default {
   },
   created() {
     this.name = this.getCharacterName;
+    this.push = debounce(this.push, 5000);
+
     // Ugly but only way to avoid binding v-model to store
     this.details = JSON.parse(JSON.stringify(this.getCharacterDetails));
   },
@@ -50,7 +53,7 @@ export default {
     ...mapActions('character', [
       'editCharacter',
     ]),
-    edit(change) {
+    push(change) {
       this.editCharacter(change);
     },
   },

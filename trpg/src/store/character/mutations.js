@@ -62,7 +62,6 @@ export default {
           score: 11,
         },
       ],
-      physical: '',
     };
   },
 };
