@@ -39,6 +39,7 @@
         <q-btn
         flat
         @click="clearDamage()"
+        :loading="loading"
         >
           Récupérer
           <q-icon
@@ -52,6 +53,7 @@
         <q-btn
         flat
         @click="healDamage(selected.value)"
+        :loading="loading"
         >
           Soigner
           <q-icon
@@ -64,6 +66,7 @@
         <q-btn
         flat
         @click="takeDamage(selected.value)"
+        :loading="loading"
         >
           Infliger
           <q-icon
@@ -85,6 +88,7 @@ import { debounce } from 'quasar';
 export default {
   data() {
     return {
+      loading: false,
       damage: [
         0,
         0,
@@ -130,28 +134,35 @@ export default {
       'editCharacter',
     ]),
     takeDamage(change) {
-      let c = change;
-      this.damage = this.damage.map((x) => {
-        if (x < c) {
-          const delta = c - x;
-          c -= delta;
-          return x + delta;
-        }
-        return x;
-      });
-      this.push();
+      setTimeout(() => {
+        let c = change;
+        this.damage = this.damage.map((x) => {
+          if (x < c) {
+            const delta = c - x;
+            c -= delta;
+            return x + delta;
+          }
+          return x;
+        });
+        this.push();
+      }, 50);
     },
     healDamage(change) {
-      const newPoints = this.damage.filter(x => x !== change);
-      while (newPoints.length < this.damage.length) newPoints.push(0);
-      this.damage = newPoints;
-      this.push();
+      setTimeout(() => {
+        const newPoints = this.damage.filter(x => x !== change);
+        while (newPoints.length < this.damage.length) newPoints.push(0);
+        this.damage = newPoints;
+        this.push();
+      }, 50);
     },
     clearDamage() {
-      const newPoints = this.damage.filter(x => x === 0);
-      while (newPoints.length < this.damage.length) newPoints.push(0);
-      this.damage = newPoints;
-      this.push();
+      setTimeout(() => {
+        const newPoints = this.damage.filter(x => x === 0);
+        while (newPoints.length < this.damage.length) newPoints.push(0);
+        this.damage = newPoints;
+        this.push();
+        this.loading = false;
+      }, 50);
     },
     iconSelect(val) {
       switch (val) {
@@ -167,7 +178,12 @@ export default {
       }
     },
     push() {
-      this.editCharacter({ health: this.damage });
+      this.loading = true;
+
+      setTimeout(async () => {
+        await this.editCharacter({ health: this.damage });
+        this.loading = false;
+      }, 500);
     },
   },
 };

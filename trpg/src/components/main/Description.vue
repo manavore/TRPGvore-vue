@@ -44,7 +44,7 @@ export default {
   },
   created() {
     this.name = this.getCharacterName;
-    this.push = debounce(this.push, 5000);
+    this.push = debounce(this.push, 10000);
 
     // Ugly but only way to avoid binding v-model to store
     this.details = JSON.parse(JSON.stringify(this.getCharacterDetails));

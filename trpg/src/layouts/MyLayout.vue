@@ -61,7 +61,27 @@
           </q-item-section>
 
           <q-item-section>
-            Général
+            <div v-if="this['character/isCharacterSelected']">
+              {{ this['character/getCharacterName'] }}
+            </div>
+            <div v-else>
+              Description
+            </div>
+          </q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          :disable="!this['character/isCharacterSelected']"
+          :to="{ path: '/game' }"
+        >
+          <q-item-section avatar>
+            <q-icon name="fas fa-dice-d20" />
+          </q-item-section>
+
+          <q-item-section>
+            Jeu
           </q-item-section>
         </q-item>
 
@@ -156,6 +176,7 @@ export default {
     ...mapGetters([
       'user/isAuthenticated',
       'character/isCharacterSelected',
+      'character/getCharacterName',
     ]),
   },
   methods: {
