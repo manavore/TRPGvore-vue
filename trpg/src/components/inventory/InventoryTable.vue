@@ -226,11 +226,29 @@ export default {
       }, 500);
     },
     async push() {
-      await this.editCharacter({
-        inventory: {
-          equipements: this.data,
-        },
-      });
+      try {
+        await this.editCharacter({
+          inventory: {
+            equipements: this.data,
+          },
+        });
+
+        this.$q.notify({
+          color: 'positive',
+          textColor: 'white',
+          icon: 'fas fa-check-circle',
+          message: 'Sauvegardé',
+        });
+      } catch (err) {
+        console.error(err);
+
+        this.$q.notify({
+          color: 'negative',
+          textColor: 'white',
+          icon: 'fas fa-times-circle',
+          message: 'Échec',
+        });
+      }
     },
   },
 };

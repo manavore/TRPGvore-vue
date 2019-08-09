@@ -150,8 +150,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import { debounce } from 'quasar';
+import api from '../api/api';
 
 export default {
   data() {
@@ -194,19 +195,21 @@ export default {
   },
   computed: {
     ...mapGetters('character', [
-      'getEquipements',
+      'getCharacterId',
     ]),
   },
-  created() {
-    // Ugly but only way to avoid binding v-model to store
-    // this.data = JSON.parse(JSON.stringify(this.getEquipements));
-
+  async created() {
     this.push = debounce(this.push, 5000);
+
+    try {
+      const res = await api.getCharacterP(this.getCharacterId, { withSkills: '1' });
+
+      this.details = res.detailsExt;
+    } catch (err) {
+      console.error(err);
+    }
   },
   methods: {
-    ...mapActions('character', [
-      'editCharacter',
-    ]),
     addRow() {
       this.loading = true;
       setTimeout(() => {
@@ -230,13 +233,25 @@ export default {
       }, 500);
     },
     async push() {
-      // todo change this
-      /*
-      await this.editCharacter({
-        inventory: {
-          equipements: this.data,
-        },
-      }); */
+      try {
+        await api.patchCharacter(this.getCharacterId, { skills: this.data });
+
+        this.$q.notify({
+          color: 'positive',
+          textColor: 'white',
+          icon: 'fas fa-check-circle',
+          message: 'Sauvegardé',
+        });
+      } catch (err) {
+        console.error(err);
+
+        this.$q.notify({
+          color: 'negative',
+          textColor: 'white',
+          icon: 'fas fa-times-circle',
+          message: 'Échec',
+        });
+      }
     },
   },
 };

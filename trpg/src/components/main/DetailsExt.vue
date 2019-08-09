@@ -9,6 +9,7 @@
       :label="obj.field"
       unelevated
       maxlength=30
+      class="q-ma-sm"
       @blur="push({ detailsExt: details })"
     />
   </q-form>
@@ -27,14 +28,6 @@ export default {
     return {
       name: '',
       details: [
-        {
-          field: 'Expression',
-          description: '',
-        },
-        {
-          field: 'Croyances',
-          description: '',
-        },
       ],
     };
   },
@@ -58,8 +51,22 @@ export default {
     async push(change) {
       try {
         await api.patchCharacter(this.getCharacterId, change);
+
+        this.$q.notify({
+          color: 'positive',
+          textColor: 'white',
+          icon: 'fas fa-check-circle',
+          message: 'Sauvegardé',
+        });
       } catch (err) {
         console.error(err);
+
+        this.$q.notify({
+          color: 'negative',
+          textColor: 'white',
+          icon: 'fas fa-times-circle',
+          message: 'Échec',
+        });
       }
     },
   },

@@ -91,7 +91,7 @@ export default {
         () => {
           if (this.getStatus === 'success') {
             this.$q.notify({
-              color: 'green-4', // Todo change color
+              color: 'positive',
               textColor: 'white',
               icon: 'fas fa-check-circle',
               message: 'Succés',
@@ -99,7 +99,7 @@ export default {
             this.$router.push('/');
           } else {
             this.$q.notify({
-              color: 'negative', // Todo change color
+              color: 'negative',
               textColor: 'white',
               icon: 'fas fa-times-circle',
               message: 'Échec',

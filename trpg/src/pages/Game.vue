@@ -1,12 +1,12 @@
 <template>
-  <q-page class="flex flex-top row q-gutter-xl justify-around" style="padding-top:20px">
+  <q-page class="flex flex-top row q-gutter-sm justify-around" style="padding-top:20px">
 
-      <div class="col-md-2 col-sm-2">
+      <div class="col-md-2 col-sm-5">
         <Dice />
         <DiceSummary />
       </div>
 
-      <div class="col-md-6 col-sm-6 mana-box q-gutter-sm">
+      <div class="col-md-6 col-sm-5 mana-box q-gutter-sm">
         <Abilities />
       </div>
 

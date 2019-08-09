@@ -7,6 +7,7 @@
       label="Nom du personnage"
       unelevated
       maxlength=30
+      class="q-ma-sm"
       @blur="push({ name })"
     />
 
@@ -17,6 +18,7 @@
       :label="obj.field"
       unelevated
       maxlength=30
+      class="q-ma-sm"
       @blur="push({ details })"
     />
   </q-form>
@@ -53,8 +55,26 @@ export default {
     ...mapActions('character', [
       'editCharacter',
     ]),
-    push(change) {
-      this.editCharacter(change);
+    async push(change) {
+      try {
+        await this.editCharacter(change);
+
+        this.$q.notify({
+          color: 'positive',
+          textColor: 'white',
+          icon: 'fas fa-check-circle',
+          message: 'Sauvegardé',
+        });
+      } catch (err) {
+        console.error(err);
+
+        this.$q.notify({
+          color: 'negative',
+          textColor: 'white',
+          icon: 'fas fa-times-circle',
+          message: 'Échec',
+        });
+      }
     },
   },
 };
