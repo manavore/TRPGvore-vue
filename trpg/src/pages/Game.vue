@@ -6,11 +6,11 @@
         <DiceSummary />
       </div>
 
-      <div class="col-md-7 col-sm-7 mana-box q-gutter-sm">
+      <div class="col-md-6 col-sm-6 mana-box q-gutter-sm">
         <Abilities />
       </div>
 
-      <div class="col-md-3 col-sm-3 mana-box">
+      <div class="col-md-4 col-sm-4 mana-box">
         <Health />
       </div>
   </q-page>
@@ -19,14 +19,14 @@
 <style lang="stylus" scoped>
 .mana-box
   width: 100%
-  max-width: 450px
+  max-width: 390px
 </style>
 
 <script>
-import Dice from 'components/main/Dice.vue';
-import Health from 'components/main/Health.vue';
-import Abilities from 'components/main/Abilities.vue';
-import DiceSummary from 'components/main/DiceSummary.vue';
+import Dice from 'components/game/Dice.vue';
+import Health from 'components/game/Health.vue';
+import Abilities from 'components/game/Abilities.vue';
+import DiceSummary from 'components/game/DiceSummary.vue';
 
 export default {
   name: 'PageGame',

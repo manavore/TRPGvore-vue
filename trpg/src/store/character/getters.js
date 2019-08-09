@@ -2,6 +2,11 @@ export function getCharacter(state) {
   return state.current;
 }
 
+export function getCharacterId(state) {
+  // eslint-disable-next-line no-underscore-dangle
+  return state.current._id;
+}
+
 export function getCharacterDetails(state) {
   return state.current.details;
 }
