@@ -80,10 +80,10 @@ module.exports = function f(ctx) {
 
     build: {
       scopeHoisting: true,
-      // showProgress: true,
+      showProgress: true,
       vueRouterMode: 'hash',
       // vueCompiler: true,
-      // gzip: true,
+      gzip: true,
       // analyze: true,
       // extractCSS: false,
       extendWebpack(cfg) {
@@ -97,6 +97,13 @@ module.exports = function f(ctx) {
           },
         });
       },
+      env: ctx.dev
+        ? { // so on dev we'll have
+          API: JSON.stringify('http://127.0.0.1:3000'),
+        }
+        : { // and on build (production):
+          API: JSON.stringify('http://127.0.0.1:3000'),
+        },
     },
 
     devServer: {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'http://127.0.0.1:3000';
+const API_URL = process.env.API;
 const AUTH_URL = `${API_URL}/auth/`;
 const USER_URL = `${API_URL}/api/users/`;
 const DICE_URL = `${API_URL}/api/dice/`;
