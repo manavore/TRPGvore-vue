@@ -102,7 +102,7 @@ module.exports = function f(ctx) {
           API: JSON.stringify('http://127.0.0.1:3000'),
         }
         : { // and on build (production):
-          API: JSON.stringify('http://127.0.0.1:3000'),
+          API: JSON.stringify('http://127.0.0.1:3001'),
         },
     },
 
