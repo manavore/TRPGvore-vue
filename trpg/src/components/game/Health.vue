@@ -82,16 +82,15 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import { debounce } from 'quasar';
+import api from '../../api/api';
 
 export default {
   data() {
     return {
       loading: false,
       damage: [
-        0,
-        0,
         0,
         0,
         0,
@@ -119,20 +118,24 @@ export default {
     };
   },
   created() {
-    this.push = debounce(this.push, 5000);
+    setTimeout(async () => {
+      try {
+        const res = await api.getCharacterP(this.getCharacterId, { withHealth: '1' });
+        this.damage = res.health;
+      } catch (err) {
+        console.error(err);
+      }
+    }, 50);
 
-    // Ugly but only way to avoid binding v-model to store
-    this.damage = JSON.parse(JSON.stringify(this.getHealth));
+    this.push = debounce(this.push, 3500);
   },
   computed: {
     ...mapGetters('character', [
       'getHealth',
+      'getCharacterId',
     ]),
   },
   methods: {
-    ...mapActions('character', [
-      'editCharacter',
-    ]),
     takeDamage(change) {
       setTimeout(() => {
         let c = change;
@@ -177,13 +180,16 @@ export default {
           return 'fas fa-heart';
       }
     },
-    push() {
+    async push() {
       this.loading = true;
 
-      setTimeout(async () => {
-        await this.editCharacter({ health: this.damage });
+      try {
+        await api.patchCharacter(this.getCharacterId, { health: this.damage });
+
         this.loading = false;
-      }, 500);
+      } catch (err) {
+        console.error(err);
+      }
     },
   },
 };

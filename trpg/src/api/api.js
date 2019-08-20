@@ -87,8 +87,6 @@ export default class APIService {
       params: {
         withDetails: '1',
         withInventory: '1',
-        withAbilities: '1',
-        withHealth: '1',
         withDetailsExt: '1',
       },
     })
@@ -97,13 +95,14 @@ export default class APIService {
   }
 
   static async getCharacterP(id, {
-    withDetails, withDetailsExt, withInventory, withAbilities, withHealth,
+    withDetails, withDetailsExt, withInventory, withAbilities, withHealth, withSkills,
   }) {
     withDetails = withDetails || '0';
     withDetailsExt = withDetailsExt || '0';
     withInventory = withInventory || '0';
     withAbilities = withAbilities || '0';
     withHealth = withHealth || '0';
+    withSkills = withSkills || '0';
 
     return axios.get(`${CHARACTER_URL}${id}`, {
       params: {
@@ -112,6 +111,7 @@ export default class APIService {
         withInventory,
         withAbilities,
         withHealth,
+        withSkills,
       },
     })
       .then(res => res.data)

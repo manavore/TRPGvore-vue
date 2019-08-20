@@ -44,7 +44,7 @@
 
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters } from 'vuex';
 import { debounce } from 'quasar';
 import api from '../../api/api';
 
@@ -55,7 +55,40 @@ export default {
         {
           name: 'Force',
           score: 11,
-        }],
+        },
+        {
+          name: 'Endurance',
+          score: 11,
+        },
+        {
+          name: 'Agilité',
+          score: 11,
+        },
+        {
+          name: 'Précision',
+          score: 11,
+        },
+        {
+          name: 'Instinct',
+          score: 11,
+        },
+        {
+          name: 'Intelligence',
+          score: 11,
+        },
+        {
+          name: 'Empathie',
+          score: 11,
+        },
+        {
+          name: 'Volonté',
+          score: 11,
+        },
+        {
+          name: 'Arcane',
+          score: 1,
+        },
+      ],
     };
   },
   created() {
@@ -66,7 +99,7 @@ export default {
       } catch (err) {
         console.error(err);
       }
-    }, 200);
+    }, 50);
 
     this.push = debounce(this.push, 3500);
   },
@@ -76,9 +109,6 @@ export default {
     ]),
   },
   methods: {
-    ...mapActions('character', [
-      'editCharacter',
-    ]),
     calcModifier(val) {
       return Math.floor((val - 10) / 2);
     },

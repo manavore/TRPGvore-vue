@@ -198,16 +198,17 @@ export default {
       'getCharacterId',
     ]),
   },
-  async created() {
-    this.push = debounce(this.push, 5000);
+  created() {
+    setTimeout(async () => {
+      try {
+        const res = await api.getCharacterP(this.getCharacterId, { withSkills: '1' });
+        this.data = res.skills;
+      } catch (err) {
+        console.error(err);
+      }
+    }, 50);
 
-    try {
-      const res = await api.getCharacterP(this.getCharacterId, { withSkills: '1' });
-
-      this.details = res.detailsExt;
-    } catch (err) {
-      console.error(err);
-    }
+    this.push = debounce(this.push, 3500);
   },
   methods: {
     addRow() {

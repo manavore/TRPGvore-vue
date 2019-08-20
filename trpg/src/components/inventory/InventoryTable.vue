@@ -150,6 +150,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import { debounce } from 'quasar';
+import api from '../../api/api';
 
 export default {
   data() {
@@ -191,13 +192,20 @@ export default {
   computed: {
     ...mapGetters('character', [
       'getEquipements',
+      'getCharacterId',
     ]),
   },
   created() {
-    // Ugly but only way to avoid binding v-model to store
-    this.data = JSON.parse(JSON.stringify(this.getEquipements));
+    setTimeout(async () => {
+      try {
+        const res = await api.getCharacterP(this.getCharacterId, { withInventory: '1' });
+        this.data = res.inventory.equipements;
+      } catch (err) {
+        console.error(err);
+      }
+    }, 50);
 
-    this.push = debounce(this.push, 5000);
+    this.push = debounce(this.push, 3500);
   },
   methods: {
     ...mapActions('character', [
@@ -227,11 +235,12 @@ export default {
     },
     async push() {
       try {
-        await this.editCharacter({
-          inventory: {
-            equipements: this.data,
-          },
-        });
+        await api.patchCharacter(this.getCharacterId,
+          {
+            inventory: {
+              equipements: this.data,
+            },
+          });
 
         this.$q.notify({
           color: 'positive',

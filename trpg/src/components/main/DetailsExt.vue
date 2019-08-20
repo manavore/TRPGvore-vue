@@ -10,7 +10,7 @@
       unelevated
       maxlength=30
       class="q-ma-sm"
-      @blur="push({ detailsExt: details })"
+      @blur="push()"
     />
   </q-form>
 </template>
@@ -48,9 +48,9 @@ export default {
     }
   },
   methods: {
-    async push(change) {
+    async push() {
       try {
-        await api.patchCharacter(this.getCharacterId, change);
+        await api.patchCharacter(this.getCharacterId, { detailsExt: this.details });
 
         this.$q.notify({
           color: 'positive',

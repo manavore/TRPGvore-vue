@@ -7,27 +7,11 @@ export function getCharacterId(state) {
   return state.current._id;
 }
 
-export function getCharacterDetails(state) {
-  return state.current.details;
-}
-
 export function getCharacterName(state) {
   return state.current.name;
-}
-
-export function getAbilities(state) {
-  return state.current.abilities;
 }
 
 export function isCharacterSelected(state) {
   // eslint-disable-next-line no-underscore-dangle
   return !!state.current._id;
-}
-
-export function getEquipements(state) {
-  return state.current.inventory.equipements;
-}
-
-export function getHealth(state) {
-  return state.current.health;
 }

@@ -8,7 +8,7 @@
       unelevated
       maxlength=30
       class="q-ma-sm"
-      @blur="push({ name })"
+      @blur="editCharacter({ name })"
     />
 
     <q-input
@@ -19,7 +19,7 @@
       unelevated
       maxlength=30
       class="q-ma-sm"
-      @blur="push({ details })"
+      @blur="push()"
     />
   </q-form>
 </template>
@@ -30,6 +30,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import { debounce } from 'quasar';
+import api from '../../api/api';
 
 export default {
   data() {
@@ -41,23 +42,29 @@ export default {
   computed: {
     ...mapGetters('character', [
       'getCharacterName',
-      'getCharacterDetails',
+      'getCharacterId',
     ]),
   },
   created() {
     this.name = this.getCharacterName;
-    this.push = debounce(this.push, 10000);
+    this.push = debounce(this.push, 3500);
 
-    // Ugly but only way to avoid binding v-model to store
-    this.details = JSON.parse(JSON.stringify(this.getCharacterDetails));
+    setTimeout(async () => {
+      try {
+        const res = await api.getCharacterP(this.getCharacterId, { withDetails: '1' });
+        this.details = res.details;
+      } catch (err) {
+        console.error(err);
+      }
+    }, 50);
   },
   methods: {
     ...mapActions('character', [
       'editCharacter',
     ]),
-    async push(change) {
+    async push() {
       try {
-        await this.editCharacter(change);
+        await api.patchCharacter(this.getCharacterId, { details: this.details });
 
         this.$q.notify({
           color: 'positive',
