@@ -46,6 +46,7 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 import { debounce } from 'quasar';
+import api from '../../api/api';
 
 export default {
   data() {
@@ -58,14 +59,20 @@ export default {
     };
   },
   created() {
-    // Ugly but only way to avoid binding v-model to store
-    this.abilities = JSON.parse(JSON.stringify(this.getAbilities));
+    setTimeout(async () => {
+      try {
+        const res = await api.getCharacterP(this.getCharacterId, { withAbilities: '1' });
+        this.abilities = res.abilities;
+      } catch (err) {
+        console.error(err);
+      }
+    }, 200);
 
-    this.push = debounce(this.push, 5000);
+    this.push = debounce(this.push, 3500);
   },
   computed: {
     ...mapGetters('character', [
-      'getAbilities',
+      'getCharacterId',
     ]),
   },
   methods: {
@@ -85,8 +92,12 @@ export default {
     upperBound(val) {
       return val >= 30;
     },
-    push() {
-      this.editCharacter({ abilities: this.abilities });
+    async push() {
+      try {
+        await api.patchCharacter(this.getCharacterId, { abilities: this.abilities });
+      } catch (err) {
+        console.error(err);
+      }
     },
   },
 };
